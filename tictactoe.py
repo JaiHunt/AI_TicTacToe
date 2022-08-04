@@ -1,5 +1,4 @@
 import random
-from turtle import position
 
 # Naughts and Crosses Board
 def displayBoard(board):
@@ -17,10 +16,10 @@ def playerIn():
         marker = input("player must choose 'x' or 'o': ")
         
         if marker=="o":
-            return print("o")
+            return("o", "x")
 
         elif marker=="x":
-            return print('x')
+            return('x', 'o')
 
         else:
             return print("Please input either an 'x' or a 'o'")      
@@ -78,7 +77,7 @@ while True:
     
     # Game play 
     play_game = input('Are you ready to play? [Y/N]')
-    if play_game == ("Y"):
+    if play_game == ("Y" or "y"):
         game_is_on = True
     else:
         game_is_on = False
@@ -106,6 +105,22 @@ while True:
             print("AI player")
             position = playerChoice(theBoard)
             handleTurn(theBoard, player2_marker, position)
+            if checkWin(theBoard, player2_marker):
+                displayBoard(theBoard)
+                print("You have lost the game")
+                game_is_on = False
+            else:
+                if fullBoardCheck(theBoard):
+                    displayBoard(theBoard)
+                    print("The game is a draw!")
+                    break
+                else:
+                    turn = 'player 1'
+    if replay() == "N" or "n":
+        break
+
+
+
         
 
 
